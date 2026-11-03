@@ -83,13 +83,9 @@ El aprendiz también ejecutó la colección completa en Postman: 82 comprobacion
 
 Se conserva el historial de EV01. La ampliación está en la rama aa5-ev03-jxstech:
 
-**Estado de publicación: pendiente.** La rama existe localmente y conserva el historial; todavía no está publicada en GitHub. El ZIP de revisión no debe enviarse como entrega definitiva hasta completar esa publicación.
+[Código correspondiente a EV03 en GitHub](https://github.com/Sergiotech2026xl/GA7-AA5-EV01/tree/aa5-ev03-jxstech).
 
-Repositorio existente: [GA7-AA5-EV01](https://github.com/Sergiotech2026xl/GA7-AA5-EV01).
-
-Destino previsto para EV03, pendiente de publicación: `https://github.com/Sergiotech2026xl/GA7-AA5-EV01/tree/aa5-ev03-jxstech`.
-
-Después de publicar, se podrá descargar con el historial mediante:
+La rama debe estar publicada y el enlace debe comprobarse antes de enviar la evidencia. Para descargar esa versión con su historial:
 
 ```powershell
 git clone --branch aa5-ev03-jxstech https://github.com/Sergiotech2026xl/GA7-AA5-EV01.git JXSTech-EV03

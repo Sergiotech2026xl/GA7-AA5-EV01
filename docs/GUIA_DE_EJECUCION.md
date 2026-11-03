@@ -71,9 +71,9 @@ También se ejecutó la colección completa con Newman: 36 solicitudes y 82 comp
 
 ## 7. Revisar el repositorio
 
-La rama local **aa5-ev03-jxstech** conserva el historial de EV01. Su publicación en GitHub está pendiente de autorización. El archivo `ENLACE_REPOSITORIO.txt` distingue el repositorio existente del destino previsto para EV03. Esta es una entrega de revisión: debe completarse la publicación antes de generar el ZIP definitivo.
+La rama **aa5-ev03-jxstech** conserva el historial de EV01 y los cambios de esta evidencia. El archivo `ENLACE_REPOSITORIO.txt` contiene la dirección correspondiente a EV03. Antes de entregar, publica la rama y comprueba que ese enlace muestre el código, la documentación y la captura de pruebas.
 
-Después de publicar, se podrá descargar la versión con su historial desde GitHub:
+La versión publicada se descarga con su historial desde GitHub mediante:
 
 ```powershell
 git clone --branch aa5-ev03-jxstech https://github.com/Sergiotech2026xl/GA7-AA5-EV01.git JXSTech-EV03
