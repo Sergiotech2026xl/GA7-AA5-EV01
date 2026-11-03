@@ -1,0 +1,12 @@
+# Dependencias que se recuperan mediante npm install.
+node_modules/
+
+# Configuración privada y credenciales.
+.env
+.env.*
+!.env.example
+
+# Archivos temporales y registros.
+*.log
+.DS_Store
+Thumbs.db
