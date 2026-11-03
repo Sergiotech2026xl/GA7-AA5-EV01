@@ -1,0 +1,556 @@
+{
+  "fechaUTC": "2026-11-03T21:31:29.069Z",
+  "herramienta": "Newman 6 (motor de ejecución de colecciones Postman)",
+  "entorno": "Solicitudes HTTP reales y MongoDB Atlas real; base temporal independiente",
+  "estado": "aprobado",
+  "baseTemporalEliminada": true,
+  "solicitudes": 36,
+  "comprobaciones": 82,
+  "fallos": 0,
+  "resultados": [
+    {
+      "solicitud": "01 — Disponibilidad",
+      "http": 200,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 200",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        },
+        {
+          "nombre": "Servicio disponible",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "02 — Registrar operador de prueba",
+      "http": 201,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 201",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "03 — Rechazar usuario duplicado",
+      "http": 409,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 409",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "04 — Rechazar contraseña incorrecta",
+      "http": 401,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 401",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "05 — Iniciar sesión y guardar token",
+      "http": 200,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 200",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        },
+        {
+          "nombre": "Token presente",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "06 — Consultar sesión",
+      "http": 200,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 200",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "07 — Registrar cliente",
+      "http": 201,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 201",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "08 — Listar clientes",
+      "http": 200,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 200",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        },
+        {
+          "nombre": "Listado paginado",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "09 — Consultar cliente",
+      "http": 200,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 200",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "10 — Actualizar cliente",
+      "http": 200,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 200",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "11 — Registrar reloj",
+      "http": 201,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 201",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        },
+        {
+          "nombre": "Stock inicial cero",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "12 — Registrar audífonos",
+      "http": 201,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 201",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "13 — Listar productos",
+      "http": 200,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 200",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "14 — Consultar reloj",
+      "http": 200,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 200",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "15 — Actualizar descripción del reloj",
+      "http": 200,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 200",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "16 — Ingresar diez relojes",
+      "http": 201,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 201",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "17 — Ingresar cinco audífonos",
+      "http": 201,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 201",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "18 — Salida manual de un reloj",
+      "http": 201,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 201",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "19 — Consultar inventario",
+      "http": 200,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 200",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "20 — Consultar movimientos del reloj",
+      "http": 200,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 200",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        },
+        {
+          "nombre": "Dos movimientos antes de vender",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "21 — Vender dos relojes y un audífono",
+      "http": 201,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 201",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        },
+        {
+          "nombre": "Total calculado por el servidor",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "22 — Rechazar referencia de venta duplicada",
+      "http": 409,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 409",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "23 — Rechazar venta sin existencias",
+      "http": 409,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 409",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "24 — Consultar venta",
+      "http": 200,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 200",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "25 — Listar ventas",
+      "http": 200,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 200",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "26 — Consultar stock después de vender",
+      "http": 200,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 200",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        },
+        {
+          "nombre": "Siete relojes restantes",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "27 — Anular venta",
+      "http": 200,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 200",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        },
+        {
+          "nombre": "Venta anulada",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "28 — Rechazar segunda anulación",
+      "http": 409,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 409",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "29 — Verificar restitución de existencias",
+      "http": 200,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 200",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        },
+        {
+          "nombre": "Nueve relojes después de anular",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "30 — Retirar saldo del reloj para desactivarlo",
+      "http": 201,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 201",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "31 — Desactivar reloj",
+      "http": 200,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 200",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        },
+        {
+          "nombre": "Producto inactivo",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "32 — Reactivar reloj",
+      "http": 200,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 200",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "33 — Desactivar cliente",
+      "http": 200,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 200",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "34 — Reactivar cliente",
+      "http": 200,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 200",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "35 — Cerrar sesión",
+      "http": 200,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 200",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        }
+      ]
+    },
+    {
+      "solicitud": "36 — Rechazar sesión cerrada",
+      "http": 401,
+      "comprobaciones": [
+        {
+          "nombre": "Código HTTP 401",
+          "aprobada": true
+        },
+        {
+          "nombre": "Respuesta JSON válida",
+          "aprobada": true
+        }
+      ]
+    }
+  ]
+}

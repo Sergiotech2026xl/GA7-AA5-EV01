@@ -1,0 +1,417 @@
+[
+  {
+    "method": "get",
+    "url": "/salud",
+    "titulo": "Consultar disponibilidad",
+    "descripcion": "Comprueba que la API puede comunicarse con MongoDB.",
+    "entrada": null,
+    "salida": "Salud",
+    "status": 200,
+    "publico": true,
+    "errores": [
+      500
+    ]
+  },
+  {
+    "method": "post",
+    "url": "/usuarios/registro",
+    "titulo": "Registrar operador",
+    "descripcion": "Crea una cuenta de operador y guarda un hash bcrypt de la contraseña. Todos los operadores registrados tienen acceso a los módulos comerciales de esta versión académica local.",
+    "entrada": "Registro",
+    "salida": "Mensaje",
+    "status": 201,
+    "publico": true,
+    "ejemplo": {
+      "usuario": "operador_demo",
+      "password": "PruebaSena2026"
+    },
+    "errores": [
+      400,
+      409,
+      429
+    ]
+  },
+  {
+    "method": "post",
+    "url": "/usuarios/login",
+    "titulo": "Iniciar sesión",
+    "descripcion": "Comprueba las credenciales y entrega un token de 64 caracteres válido durante 8 horas. MongoDB conserva únicamente el hash SHA-256 del token.",
+    "entrada": "Credenciales",
+    "salida": "Login",
+    "status": 200,
+    "publico": true,
+    "ejemplo": {
+      "usuario": "operador_demo",
+      "password": "PruebaSena2026"
+    },
+    "errores": [
+      400,
+      401,
+      429
+    ]
+  },
+  {
+    "method": "get",
+    "url": "/usuarios/sesion",
+    "titulo": "Consultar sesión",
+    "descripcion": "Devuelve el identificador y el nombre del operador autenticado.",
+    "entrada": null,
+    "salida": "Sesion",
+    "status": 200,
+    "publico": false,
+    "errores": [
+      401
+    ]
+  },
+  {
+    "method": "post",
+    "url": "/usuarios/logout",
+    "titulo": "Cerrar sesión",
+    "descripcion": "Elimina la sesión del token enviado. Los siguientes usos de ese token serán rechazados.",
+    "entrada": null,
+    "salida": "Mensaje",
+    "status": 200,
+    "publico": false,
+    "errores": [
+      401
+    ]
+  },
+  {
+    "method": "post",
+    "url": "/clientes",
+    "titulo": "Registrar cliente",
+    "descripcion": "Guarda los mismos campos comerciales del módulo de clientes desarrollado en evidencias anteriores.",
+    "entrada": "ClienteEntrada",
+    "salida": "DatosCliente",
+    "status": 201,
+    "publico": false,
+    "ejemplo": {
+      "nombre": "Laura",
+      "apellido": "Prueba",
+      "documento": "1000123456",
+      "correo": "laura@example.com",
+      "telefono": "3001234567",
+      "direccion": "Calle 10 numero 20"
+    },
+    "errores": [
+      400,
+      401,
+      409
+    ]
+  },
+  {
+    "method": "get",
+    "url": "/clientes",
+    "titulo": "Listar clientes",
+    "descripcion": "Devuelve registros activos e inactivos en una lista paginada, ordenada por identificador descendente.",
+    "entrada": null,
+    "salida": "ListaCliente",
+    "status": 200,
+    "publico": false,
+    "errores": [
+      400,
+      401
+    ]
+  },
+  {
+    "method": "get",
+    "url": "/clientes/{id}",
+    "titulo": "Consultar cliente",
+    "descripcion": "Busca un registro por identificador, incluyendo registros desactivados.",
+    "entrada": null,
+    "salida": "DatosCliente",
+    "status": 200,
+    "publico": false,
+    "errores": [
+      400,
+      401,
+      404
+    ]
+  },
+  {
+    "method": "put",
+    "url": "/clientes/{id}",
+    "titulo": "Actualizar cliente",
+    "descripcion": "Actualiza todos los campos del cliente activo; el documento y el correo deben conservar su unicidad.",
+    "entrada": "ClienteEntrada",
+    "salida": "DatosCliente",
+    "status": 200,
+    "publico": false,
+    "ejemplo": {
+      "nombre": "Laura",
+      "apellido": "Prueba",
+      "documento": "1000123456",
+      "correo": "laura@example.com",
+      "telefono": "3001234567",
+      "direccion": "Calle 10 numero 20"
+    },
+    "errores": [
+      400,
+      401,
+      404,
+      409
+    ]
+  },
+  {
+    "method": "delete",
+    "url": "/clientes/{id}",
+    "titulo": "Desactivar cliente",
+    "descripcion": "Baja lógica del cliente. Conserva el registro y bloquea ventas nuevas para ese cliente.",
+    "entrada": null,
+    "salida": "DatosCliente",
+    "status": 200,
+    "publico": false,
+    "errores": [
+      400,
+      401,
+      404
+    ]
+  },
+  {
+    "method": "patch",
+    "url": "/clientes/{id}/activar",
+    "titulo": "Activar cliente",
+    "descripcion": "Reactiva el registro conservando su identificador e historial. Si ya está activo, responde 200.",
+    "entrada": null,
+    "salida": "DatosCliente",
+    "status": 200,
+    "publico": false,
+    "errores": [
+      400,
+      401,
+      404
+    ]
+  },
+  {
+    "method": "post",
+    "url": "/productos",
+    "titulo": "Registrar producto",
+    "descripcion": "Crea un reloj o audífonos inteligentes. El stock inicial es cero; se modifica mediante inventario y ventas.",
+    "entrada": "ProductoEntrada",
+    "salida": "DatosProducto",
+    "status": 201,
+    "publico": false,
+    "ejemplo": {
+      "sku": "REL-001",
+      "nombre": "Reloj inteligente",
+      "categoria": "reloj",
+      "marca": "Demo",
+      "descripcion": "Producto de demostración",
+      "precioCOP": 150000
+    },
+    "errores": [
+      400,
+      401,
+      409
+    ]
+  },
+  {
+    "method": "get",
+    "url": "/productos",
+    "titulo": "Listar productos",
+    "descripcion": "Devuelve registros activos e inactivos en una lista paginada, ordenada por identificador descendente.",
+    "entrada": null,
+    "salida": "ListaProducto",
+    "status": 200,
+    "publico": false,
+    "errores": [
+      400,
+      401
+    ]
+  },
+  {
+    "method": "get",
+    "url": "/productos/{id}",
+    "titulo": "Consultar producto",
+    "descripcion": "Busca un registro por identificador, incluyendo registros desactivados.",
+    "entrada": null,
+    "salida": "DatosProducto",
+    "status": 200,
+    "publico": false,
+    "errores": [
+      400,
+      401,
+      404
+    ]
+  },
+  {
+    "method": "put",
+    "url": "/productos/{id}",
+    "titulo": "Actualizar producto",
+    "descripcion": "Actualiza los datos del catálogo de un producto activo. No recibe stock. Conserva los precios históricos de las ventas.",
+    "entrada": "ProductoEntrada",
+    "salida": "DatosProducto",
+    "status": 200,
+    "publico": false,
+    "ejemplo": {
+      "sku": "REL-001",
+      "nombre": "Reloj inteligente",
+      "categoria": "reloj",
+      "marca": "Demo",
+      "descripcion": "Producto de demostración",
+      "precioCOP": 150000
+    },
+    "errores": [
+      400,
+      401,
+      404,
+      409
+    ]
+  },
+  {
+    "method": "delete",
+    "url": "/productos/{id}",
+    "titulo": "Desactivar producto",
+    "descripcion": "Baja lógica del producto. Requiere stock igual a cero; conserva el historial.",
+    "entrada": null,
+    "salida": "DatosProducto",
+    "status": 200,
+    "publico": false,
+    "errores": [
+      400,
+      401,
+      404,
+      409
+    ]
+  },
+  {
+    "method": "patch",
+    "url": "/productos/{id}/activar",
+    "titulo": "Activar producto",
+    "descripcion": "Reactiva el registro conservando su identificador e historial. Si ya está activo, responde 200.",
+    "entrada": null,
+    "salida": "DatosProducto",
+    "status": 200,
+    "publico": false,
+    "errores": [
+      400,
+      401,
+      404
+    ]
+  },
+  {
+    "method": "get",
+    "url": "/inventario",
+    "titulo": "Consultar existencias",
+    "descripcion": "Lista los productos con sus existencias actuales, incluidos los inactivos, con paginación.",
+    "entrada": null,
+    "salida": "ListaProducto",
+    "status": 200,
+    "publico": false,
+    "errores": [
+      400,
+      401
+    ]
+  },
+  {
+    "method": "get",
+    "url": "/inventario/movimientos",
+    "titulo": "Consultar historial de inventario",
+    "descripcion": "Lista entradas, salidas, ventas y anulaciones. Acepta productoId como filtro opcional y ordena por fecha descendente.",
+    "entrada": null,
+    "salida": "ListaMovimiento",
+    "status": 200,
+    "publico": false,
+    "errores": [
+      400,
+      401
+    ]
+  },
+  {
+    "method": "post",
+    "url": "/inventario/movimientos",
+    "titulo": "Registrar entrada o salida",
+    "descripcion": "Registra un ajuste justificado y modifica el saldo en una transacción. Impide existencias negativas o superiores a 1.000.000. Los tipos venta y anulacion son exclusivos del sistema.",
+    "entrada": "MovimientoEntrada",
+    "salida": "DatosMovimiento",
+    "status": 201,
+    "publico": false,
+    "ejemplo": {
+      "productoId": "507f1f77bcf86cd799439012",
+      "tipo": "entrada",
+      "cantidad": 10,
+      "motivo": "Ingreso de mercancía para la tienda"
+    },
+    "errores": [
+      400,
+      401,
+      404,
+      409
+    ]
+  },
+  {
+    "method": "get",
+    "url": "/ventas",
+    "titulo": "Listar ventas",
+    "descripcion": "Lista ventas registradas y anuladas mediante paginación.",
+    "entrada": null,
+    "salida": "ListaVenta",
+    "status": 200,
+    "publico": false,
+    "errores": [
+      400,
+      401
+    ]
+  },
+  {
+    "method": "get",
+    "url": "/ventas/{id}",
+    "titulo": "Consultar venta",
+    "descripcion": "Devuelve el detalle, los precios históricos, total, estado, cliente y operador de una venta.",
+    "entrada": null,
+    "salida": "DatosVenta",
+    "status": 200,
+    "publico": false,
+    "errores": [
+      400,
+      401,
+      404
+    ]
+  },
+  {
+    "method": "post",
+    "url": "/ventas",
+    "titulo": "Registrar venta",
+    "descripcion": "Valida el cliente activo, los productos activos y el stock. Calcula el total con los precios del catálogo. Guarda venta, detalles y movimientos en una sola transacción. Si falla una línea, revierte todos los cambios. Cada referencia se puede registrar una sola vez.",
+    "entrada": "VentaEntrada",
+    "salida": "DatosVenta",
+    "status": 201,
+    "publico": false,
+    "ejemplo": {
+      "referencia": "VENTA-001",
+      "clienteId": "507f1f77bcf86cd799439011",
+      "medioPago": "efectivo",
+      "items": [
+        {
+          "productoId": "507f1f77bcf86cd799439012",
+          "cantidad": 2
+        }
+      ]
+    },
+    "errores": [
+      400,
+      401,
+      404,
+      409
+    ]
+  },
+  {
+    "method": "patch",
+    "url": "/ventas/{id}/anular",
+    "titulo": "Anular venta",
+    "descripcion": "Conserva la venta, registra el motivo y restituye todas las existencias en una transacción. La restitución solo puede suceder una vez. También admite productos desactivados; pueden reactivarse después.",
+    "entrada": "AnulacionEntrada",
+    "salida": "DatosVenta",
+    "status": 200,
+    "publico": false,
+    "ejemplo": {
+      "motivo": "El cliente cancela su compra"
+    },
+    "errores": [
+      400,
+      401,
+      404,
+      409
+    ]
+  }
+]

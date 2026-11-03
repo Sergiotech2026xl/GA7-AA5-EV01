@@ -1,233 +1,89 @@
-# Servicio web de registro e inicio de sesión
+# JXSTech — Servicios web de la tienda
 
-**Aprendiz:** Sergio Murillo  
-**Evidencia:** GA7-220501096-AA5-EV01  
-**Actividad:** Diseño y desarrollo de servicios web - caso.
+Aprendiz: Sergio Murillo. Evidencia: GA7-220501096-AA5-EV03.
+Actividad: Diseño y desarrollo de servicios web – proyecto. Versión: 2.0.0.
 
-## Objetivo
+## Propósito
 
-Diseñar y desarrollar un servicio web que permita registrar usuarios
-y verificar sus credenciales durante el inicio de sesión.
+API para la tienda de relojes y audífonos inteligentes JXSTech: acceso de operadores, clientes, catálogo de productos, entradas y salidas de inventario, ventas y anulaciones. Se amplía EV01 conservando JavaScript, Node.js, Express, MongoDB, bcryptjs y dotenv. Los clientes conservan los campos del módulo trabajado en evidencias anteriores.
 
-Si las credenciales son correctas, responde:
-"Autenticación satisfactoria".
+## Instalación y ejecución
 
-Si son incorrectas, responde:
-"Error en la autenticación".
+Se requiere Node.js 20.19 o posterior, npm y MongoDB Atlas o un replica set. Se verificó con Node.js 24.21.0. Un MongoDB standalone no permite las transacciones de esta aplicación.
 
-## Tecnologías
-
-- JavaScript y Node.js.
-- Express para el servidor y las rutas HTTP.
-- MongoDB para almacenar los usuarios.
-- bcryptjs para generar y verificar hashes de contraseñas.
-- dotenv para cargar la configuración.
-- HTML y CSS para la interfaz.
-- Git para el control de versiones.
-- Postman para probar los servicios.
-
-## Diseño de la solución
-
-El navegador envía usuario y contraseña en formato JSON a la API.
-Express valida los datos y consulta o guarda información en MongoDB.
-La API devuelve un código HTTP y un mensaje JSON al cliente.
-
-Flujo:
-
-Navegador o Postman → API Express → MongoDB → Respuesta JSON
-
-El proyecto verifica credenciales. No implementa sesiones persistentes,
-tokens ni páginas privadas, porque no forman parte del caso solicitado.
-
-## Estructura
-
-- frontend/index.html: formularios, estilos y comunicación con la API.
-- backend/server.js: conexión, validaciones, rutas y manejo de errores.
-- backend/package.json: dependencias y comando de inicio.
-- backend/package-lock.json: versiones de las dependencias.
-- backend/.env.example: plantilla de configuración sin credenciales reales.
-- .gitignore: exclusiones del control de versiones.
-- README.md: documentación del proyecto.
-
-El archivo backend/.env se crea localmente y no se entrega ni se publica.
-
-## Requisitos
-
-- Node.js 24 y npm.
-- Una conexión propia a MongoDB local o MongoDB Atlas.
-- Para Atlas: conexión a internet, usuario de base de datos y permiso
-  de acceso para la IP del equipo que ejecutará el servidor.
-
-El proyecto fue ejecutado con Node.js 24.21.0.
-
-## Instalación y ejecución en Windows
-
-1. Descomprimir el proyecto y abrir la carpeta principal en VS Code.
-2. Abrir una terminal y entrar en backend:
+Desde la carpeta del proyecto:
 
 ```powershell
 cd backend
-```
-
-3. Instalar las dependencias:
-
-```powershell
 npm.cmd ci
-```
-
-4. Si aún no existe .env, crear una copia de la plantilla:
-
-```powershell
 Copy-Item .env.example .env
 ```
 
-5. Editar .env y completar una conexión propia:
-
-```dotenv
-PORT=3000
-MONGODB_URI="mongodb+srv://USUARIO:CONTRASENA@TU_CLUSTER.mongodb.net/"
-DB_NAME=sena_autenticacion
-```
-
-Los valores USUARIO, CONTRASENA y TU_CLUSTER deben reemplazarse.
-Los caracteres especiales de las credenciales deben codificarse
-para su uso en una URI.
-
-Si se utiliza MongoDB local, la conexión puede ser:
-
-```dotenv
-MONGODB_URI="mongodb://127.0.0.1:27017"
-```
-
-6. Iniciar el servidor:
+Edita `.env` con tu conexión privada. Usa DB_NAME=jxstech_ev03 y PORT=3001 para mantener separados los datos y el puerto de EV01. El usuario de Atlas necesita permisos sobre esa base y la IP debe estar autorizada. No compartas `.env`.
 
 ```powershell
 npm.cmd start
 ```
 
-7. Abrir http://localhost:3000 en el navegador.
+Consulta http://localhost:3001/api/salud para comprobar la conexión. La página http://localhost:3001 demuestra registro y login. Los demás servicios se utilizan con Postman. El frontend React anterior no está integrado en esta entrega.
 
-Mantener la terminal abierta mientras se utiliza la aplicación.
-Para detenerla, presionar Ctrl + C en la terminal.
+## Documentación
 
-No es necesario importar usuarios. El servidor prepara la colección
-y el índice único; los registros se crean mediante la API.
+- [Guía paso a paso](docs/GUIA_DE_EJECUCION.md).
+- [Manual de diseño y servicios](docs/SERVICIOS.md).
+- [Manual para leer o imprimir en el navegador](docs/SERVICIOS.html).
+- [Especificación OpenAPI 3.0.3](docs/openapi.json).
+- [Colección de Postman con 36 solicitudes](postman/JXSTech_EV03.postman_collection.json).
 
-## Almacenamiento
+Hay 24 operaciones: disponibilidad; registro, login, sesión y logout; creación, listado, consulta, actualización, baja lógica y reactivación de clientes y productos; consulta de existencias e historial y registro de movimientos; listado, consulta, registro y anulación de ventas.
 
-Base de datos: sena_autenticacion  
-Colección: usuarios
+La base de la API es http://localhost:3001/api. Los módulos comerciales requieren Authorization: Bearer <token>. El login entrega un token con duración de 8 horas; el servidor guarda su hash. El cierre de sesión invalida ese token.
 
-Campos de cada documento:
+## Reglas de negocio
 
-- _id: identificador generado por MongoDB.
-- usuario: nombre normalizado a minúsculas.
-- passwordHash: hash de la contraseña.
-- fechaRegistro: fecha de creación.
+- Categorías reloj y audifonos; SKU único. Stock inicial cero.
+- Toda entrada o salida deja un movimiento con motivo, operador y saldos.
+- Precios y totales en pesos colombianos enteros. El servidor calcula la venta con los precios del catálogo.
+- Una venta requiere cliente y productos activos, stock suficiente y referencia única.
+- Venta, detalles y movimientos se confirman en una transacción. Si falla una línea, se revierten todos los cambios.
+- La anulación conserva la venta y restituye las existencias una sola vez.
+- Las bajas son lógicas. Un producto requiere stock cero para desactivarse y puede reactivarse.
+- Las ventas conservan los datos y precios históricos.
 
-El índice único del campo usuario impide registros duplicados.
-Las contraseñas originales no se almacenan ni se devuelven.
+Esta versión académica local asigna los mismos permisos a todos los operadores registrados y escucha en 127.0.0.1. Registra el medio de pago como dato; no integra pasarelas de pago, impuestos, envíos ni facturación electrónica.
 
-## Servicios
+## Pruebas
 
-Las solicitudes utilizan el encabezado:
+Desde backend, con `.env` configurado:
 
-Content-Type: application/json
-
-### Registro
-
-POST http://localhost:3000/api/usuarios/registro
-
-Ejemplo de cuerpo:
-
-```json
-{
-    "usuario": "usuario_demo",
-    "password": "PruebaSena2026"
-}
+```powershell
+npm.cmd test
 ```
 
-Respuesta correcta: HTTP 201
+La suite ejecuta solicitudes HTTP contra MongoDB real. Genera una base temporal con prefijo jxstech_ev03_test_ y elimina únicamente esa base al terminar. No usa DB_NAME como destino de pruebas ni borra EV01 o EV03. El usuario de Atlas debe poder crear y eliminar esas bases temporales.
 
-```json
-{
-    "mensaje": "Usuario registrado correctamente."
-}
-```
+Se aprobaron 38 casos de integración. La colección también se ejecutó con Newman: 36 solicitudes y 82 comprobaciones aprobadas, sin fallos. Consulta el [informe de verificación](docs/VERIFICACION.md), [resultados de integración](docs/resultados-pruebas.json) y [resultados de Postman/Newman](docs/resultados-postman.json). La colección permite repetir la demostración y genera datos ficticios nuevos. Sigue la guía antes de ejecutarla.
 
-Usuario repetido: HTTP 409
+## Estructura
 
-```json
-{
-    "mensaje": "El usuario ya está registrado."
-}
-```
-
-### Inicio de sesión
-
-POST http://localhost:3000/api/usuarios/login
-
-Se envían los mismos campos: usuario y password.
-
-Credenciales correctas: HTTP 200
-
-```json
-{
-    "mensaje": "Autenticación satisfactoria"
-}
-```
-
-Credenciales incorrectas: HTTP 401
-
-```json
-{
-    "mensaje": "Error en la autenticación"
-}
-```
-
-## Validaciones y errores
-
-- Usuario: entre 3 y 30 letras sin tildes, números o guiones bajos.
-- Los nombres de usuario se normalizan a minúsculas.
-- Registro: contraseña de al menos 8 caracteres.
-- Contraseña: máximo 72 bytes UTF-8, según el límite de bcrypt.
-- Las validaciones se aplican también en el servidor.
-- HTTP 400: datos inválidos o JSON mal formado.
-- HTTP 404: ruta inexistente.
-- HTTP 413: solicitud demasiado grande.
-- HTTP 500: error interno, sin exponer detalles privados.
-
-## Pruebas realizadas
-
-Se verificaron en el navegador el registro, la autenticación correcta,
-el rechazo de una contraseña incorrecta y el usuario duplicado.
-
-En Postman se observaron:
-
-| Caso | Estado | Resultado |
-|---|---|---|
-| Registro de usuario nuevo | 201 | Usuario registrado correctamente. |
-| Inicio con credenciales correctas | 200 | Autenticación satisfactoria |
-| Inicio con contraseña incorrecta | 401 | Error en la autenticación |
-| Registro de usuario existente | 409 | El usuario ya está registrado. |
-
-Las pruebas automáticas de estado y mensaje para los casos 201, 200
-y 401 finalizaron con 2 de 2 comprobaciones aprobadas en cada caso.
-
-Para repetir el registro exitoso se debe utilizar un nombre nuevo.
-Repetir el mismo nombre debe devolver 409.
+- backend/src: módulos HTTP, validaciones, sesiones, transacciones y acceso a datos.
+- backend/test: pruebas de integración.
+- backend/server.js e iniciar.js: inicio y cierre del servidor.
+- backend/package.json y package-lock.json: dependencias y versiones reproducibles.
+- backend/.env.example: plantilla sin credenciales reales.
+- frontend/index.html: demostración de registro y login.
+- docs: diseño, servicios, contratos, guía e informes.
+- postman: colección de solicitudes.
+- ENLACE_REPOSITORIO.txt: enlace de la versión entregada.
 
 ## Versionamiento y entrega
 
-El proyecto utiliza Git. El enlace del repositorio se incluye en
-ENLACE_REPOSITORIO.txt.
+Se conserva el historial de EV01. La ampliación está en la rama aa5-ev03-jxstech:
 
-El ZIP debe incluir el código, los archivos de dependencias,
-la plantilla .env.example, esta documentación y el enlace del repositorio.
+[Repositorio de EV03](https://github.com/Sergiotech2026xl/GA7-AA5-EV01/tree/aa5-ev03-jxstech).
 
-No incluir node_modules ni el archivo .env con credenciales reales.
+```powershell
+git clone --branch aa5-ev03-jxstech https://github.com/Sergiotech2026xl/GA7-AA5-EV01.git JXSTech-EV03
+```
 
-## Referencia formativa
-
-SENA. Construcción API. Junio de 2024.
-Documento del componente formativo: 228118_CF21_DU.pdf.
+El ZIP se denomina SERGIO_MURILLO_AA5_EV03.zip. Incluye código, documentación y enlace del repositorio. Excluye `.env`, node_modules y el directorio interno .git; el historial se conserva en GitHub. La preparación del ZIP no confirma el envío en Zajuna.
