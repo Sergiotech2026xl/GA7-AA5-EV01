@@ -1,0 +1,15 @@
+{
+  "fechaLocal": "2026-11-03 17:10:02",
+  "zonaHoraria": "America/Bogota",
+  "herramienta": "Postman de escritorio",
+  "coleccion": "JXSTech - GA7-AA5-EV03",
+  "iteraciones": 1,
+  "comprobaciones": 82,
+  "aprobadas": 82,
+  "fallidas": 0,
+  "omitidas": 0,
+  "errores": 0,
+  "duracionMs": 13327,
+  "origen": "Resumen mostrado por el aprendiz al ejecutar la coleccion completa en su equipo",
+  "evidencia": "Capturas/Resumen_pruebas_EV03.jpeg"
+}

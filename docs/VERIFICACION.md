@@ -13,6 +13,12 @@ La versión final fue verificada el 3 de noviembre de 2026 mediante solicitudes 
 | Limpieza de bases de pruebas | Bases temporales eliminadas al terminar |
 | Contratos de servicios | 24 operaciones documentadas en OpenAPI |
 
+## Ejecución del aprendiz en Postman
+
+El 3 de noviembre de 2026, el aprendiz ejecutó la colección completa en Postman contra su servidor local y MongoDB Atlas. El resumen mostrado en pantalla registró 82 comprobaciones aprobadas, 0 fallidas, 0 omitidas y 0 errores; duración: 13 segundos y 327 milisegundos.
+
+La captura correspondiente está incluida en `Capturas/Resumen_pruebas_EV03.jpeg`. La documentación también se entrega en `docs/Documentacion_JXSTech_EV03.pdf`.
+
 Los resultados de cada caso y sus fechas UTC están en `resultados-pruebas.json` y `resultados-postman.json`. Los informes no incluyen URI privadas, contraseñas reales ni tokens de sesión.
 
 ## Qué se comprobó

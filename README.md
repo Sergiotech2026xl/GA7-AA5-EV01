@@ -32,6 +32,7 @@ Consulta http://localhost:3001/api/salud para comprobar la conexión. La página
 - [Guía paso a paso](docs/GUIA_DE_EJECUCION.md).
 - [Manual de diseño y servicios](docs/SERVICIOS.md).
 - [Manual para leer o imprimir en el navegador](docs/SERVICIOS.html).
+- [Documentación en PDF](docs/Documentacion_JXSTech_EV03.pdf).
 - [Especificación OpenAPI 3.0.3](docs/openapi.json).
 - [Colección de Postman con 36 solicitudes](postman/JXSTech_EV03.postman_collection.json).
 
@@ -63,6 +64,8 @@ npm.cmd test
 La suite ejecuta solicitudes HTTP contra MongoDB real. Genera una base temporal con prefijo jxstech_ev03_test_ y elimina únicamente esa base al terminar. No usa DB_NAME como destino de pruebas ni borra EV01 o EV03. El usuario de Atlas debe poder crear y eliminar esas bases temporales.
 
 Se aprobaron 38 casos de integración. La colección también se ejecutó con Newman: 36 solicitudes y 82 comprobaciones aprobadas, sin fallos. Consulta el [informe de verificación](docs/VERIFICACION.md), [resultados de integración](docs/resultados-pruebas.json) y [resultados de Postman/Newman](docs/resultados-postman.json). La colección permite repetir la demostración y genera datos ficticios nuevos. Sigue la guía antes de ejecutarla.
+
+El aprendiz también ejecutó la colección completa en Postman: 82 comprobaciones aprobadas y 0 errores. La captura del resumen está en `Capturas/Resumen_pruebas_EV03.jpeg`.
 
 ## Estructura
 
