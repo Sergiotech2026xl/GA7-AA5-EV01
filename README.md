@@ -80,7 +80,13 @@ Se aprobaron 38 casos de integración. La colección también se ejecutó con Ne
 
 Se conserva el historial de EV01. La ampliación está en la rama aa5-ev03-jxstech:
 
-[Repositorio de EV03](https://github.com/Sergiotech2026xl/GA7-AA5-EV01/tree/aa5-ev03-jxstech).
+**Estado de publicación: pendiente.** La rama existe localmente y conserva el historial; todavía no está publicada en GitHub. El ZIP de revisión no debe enviarse como entrega definitiva hasta completar esa publicación.
+
+Repositorio existente: [GA7-AA5-EV01](https://github.com/Sergiotech2026xl/GA7-AA5-EV01).
+
+Destino previsto para EV03, pendiente de publicación: `https://github.com/Sergiotech2026xl/GA7-AA5-EV01/tree/aa5-ev03-jxstech`.
+
+Después de publicar, se podrá descargar con el historial mediante:
 
 ```powershell
 git clone --branch aa5-ev03-jxstech https://github.com/Sergiotech2026xl/GA7-AA5-EV01.git JXSTech-EV03
